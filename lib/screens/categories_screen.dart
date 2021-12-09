@@ -7,9 +7,32 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Text('Meals'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipOval(
+              child: Material(
+                color: Colors.transparent,
+                child: SizedBox(
+                  height: 40,
+                  width: 40,
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Icon(Icons.favorite_border),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
       floatingActionButton: TextButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.purple),
+          backgroundColor:
+              MaterialStateProperty.all(Theme.of(context).primaryColorDark),
         ),
         child: const Text(
           'Filters',
@@ -44,12 +67,11 @@ class CategoriesScreen extends StatelessWidget {
                     ),
                   ),
                   margin: const EdgeInsets.only(left: 5, right: 5),
-                  padding: EdgeInsets.only(top: screen * 0.1),
-                  height: screen * 0.4,
+                  height: screen * 0.3,
                   width: double.infinity,
                   child: const Center(
                     child: Text(
-                      'Easy recipes',
+                      'Europe',
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
@@ -60,7 +82,7 @@ class CategoriesScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 10),
-                  height: screen * 0.6,
+                  height: screen * 0.7,
                   child: const CategoryList(),
                 ),
               ),
