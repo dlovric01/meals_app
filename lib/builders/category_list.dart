@@ -23,6 +23,7 @@ class CategoryList extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
+                splashColor: DUMMY_CATEGORIES[index].color,
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {},
                 child: Stack(
@@ -42,7 +43,7 @@ class CategoryList extends StatelessWidget {
                       child: ClipPath(
                         clipper: MyCustomClipper(),
                         child: Opacity(
-                          opacity: 0.4,
+                          opacity: 0.8,
                           child: Image.network(
                             DUMMY_MEALS[index].imageUrl,
                             width: double.infinity,
