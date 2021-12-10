@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/builders/category_list.dart';
 
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
+class CategoriesScreen extends StatefulWidget {
+  final Function? saveFilters;
+  final Map<String, bool>? filters;
+
+  const CategoriesScreen(this.filters, this.saveFilters, {Key? key})
+      : super(key: key);
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  bool _glutenFree = false;
+  bool _vegan = false;
+  bool _vegetarian = false;
+  bool _lactoseFree = false;
+
+  @override
+  initState() {
+    _glutenFree = widget.filters!['gluten']!;
+    _lactoseFree = widget.filters!['lactose']!;
+    _vegetarian = widget.filters!['vegetarian']!;
+    _vegan = widget.filters!['vegan']!;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +61,16 @@ class CategoriesScreen extends StatelessWidget {
           'Filters',
           style: TextStyle(color: Colors.white),
         ),
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            showDialog(
+                context: context,
+                builder: (context) => DialogFilters(
+                    _glutenFree, _vegan, _vegetarian, _lactoseFree));
+          });
+        },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: LayoutBuilder(
         builder: (context, constraints) {
           var screen = constraints.maxHeight;
@@ -81,7 +111,7 @@ class CategoriesScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 5),
                   height: screen * 0.7,
                   child: const CategoryList(),
                 ),
@@ -89,6 +119,69 @@ class CategoriesScreen extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class DialogFilters extends StatelessWidget {
+  final bool _glutenFree;
+  final bool _vegan;
+  final bool _vegetarian;
+  final bool _lactoseFree;
+
+  const DialogFilters(
+      this._glutenFree, this._vegan, this._vegetarian, this._lactoseFree,
+      {Key? key})
+      : super(key: key);
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Filters'),
+      content: Row(
+        children: [
+          FilterButton(_glutenFree, 'Gluten'),
+          FilterButton(_vegan, 'Vegan'),
+          FilterButton(_vegetarian, 'Vege'),
+          FilterButton(_lactoseFree, 'Lactose'),
+        ],
+      ),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Okay'))
+      ],
+    );
+  }
+}
+
+class FilterButton extends StatefulWidget {
+  bool filter;
+  String textFilter;
+
+  FilterButton(this.filter, this.textFilter, {Key? key}) : super(key: key);
+
+  @override
+  State<FilterButton> createState() => _FilterButtonState();
+}
+
+class _FilterButtonState extends State<FilterButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        setState(() {
+          widget.filter = !widget.filter;
+        });
+      },
+      child: Text(widget.textFilter),
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(widget.filter ? Colors.amber : null),
       ),
     );
   }
