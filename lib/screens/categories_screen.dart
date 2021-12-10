@@ -139,8 +139,11 @@ class DialogFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Filters'),
-      content: Row(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      title: const Center(child: Text('Set Filters')),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           FilterButton(_glutenFree, 'Gluten'),
           FilterButton(_vegan, 'Vegan'),
@@ -149,11 +152,13 @@ class DialogFilters extends StatelessWidget {
         ],
       ),
       actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Okay'))
+        Center(
+          child: OutlinedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Submit')),
+        )
       ],
     );
   }
@@ -172,17 +177,14 @@ class FilterButton extends StatefulWidget {
 class _FilterButtonState extends State<FilterButton> {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return TextButton.icon(
       onPressed: () {
         setState(() {
           widget.filter = !widget.filter;
         });
       },
-      child: Text(widget.textFilter),
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(widget.filter ? Colors.amber : null),
-      ),
+      label: Text(widget.textFilter),
+      icon: Icon(widget.filter ? Icons.circle : Icons.circle_outlined),
     );
   }
 }
