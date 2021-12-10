@@ -15,7 +15,7 @@ class CategoryList extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: DUMMY_CATEGORIES[index].color!.withOpacity(0.6),
+              color: DUMMY_CATEGORIES[index].color!.withOpacity(0.5),
             ),
             margin: const EdgeInsets.only(top: 5, left: 5, right: 5),
             height: 100,
