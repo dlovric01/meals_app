@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
+import 'package:meals_app/screens/category_meals.dart';
 
-class CategoryList extends StatelessWidget {
+class CategoryList extends StatefulWidget {
   const CategoryList({Key? key}) : super(key: key);
 
+  @override
+  State<CategoryList> createState() => _CategoryListState();
+}
+
+class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -25,7 +31,15 @@ class CategoryList extends StatelessWidget {
               child: InkWell(
                 splashColor: DUMMY_CATEGORIES[index].color,
                 borderRadius: BorderRadius.circular(10),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(ctx).pushNamed(
+                    CategoryMeals.routeName,
+                    arguments: {
+                      'id': DUMMY_CATEGORIES[index].id,
+                      'title': DUMMY_CATEGORIES[index].title
+                    },
+                  );
+                },
                 child: Stack(
                   children: [
                     Align(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/dummy_data.dart';
-import 'package:meals_app/models/models.dart';
+
 import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/category_meals.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Map<String, bool> _filters = {
+  /*  Map<String, bool> _filters = {
     'gluten': false,
     'lactose': false,
     'vegan': false,
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
-            .copyWith(secondary: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.pink,
+        ).copyWith(secondary: Colors.white),
       ),
-      home: CategoriesScreen(_filters, _setFilters),
+      routes: {
+        '/': (ctx) => const CategoriesScreen(/* _filters, _setFilters */),
+        CategoryMeals.routeName: (ctx) =>
+            const CategoryMeals(/* _filteredMeals */)
+      },
     );
   }
 }

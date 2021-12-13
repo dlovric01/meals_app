@@ -30,10 +30,16 @@ class DialogFilters extends StatelessWidget {
       actions: [
         Center(
           child: OutlinedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.primary)),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Submit')),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: Colors.white),
+              )),
         )
       ],
     );
@@ -41,8 +47,8 @@ class DialogFilters extends StatelessWidget {
 }
 
 class FilterButton extends StatefulWidget {
-  bool filter;
-  String textFilter;
+  bool? filter;
+  String? textFilter;
 
   FilterButton(this.filter, this.textFilter, {Key? key}) : super(key: key);
 
@@ -56,11 +62,11 @@ class _FilterButtonState extends State<FilterButton> {
     return TextButton.icon(
       onPressed: () {
         setState(() {
-          widget.filter = !widget.filter;
+          widget.filter = widget.filter;
         });
       },
-      label: Text(widget.textFilter),
-      icon: Icon(widget.filter ? Icons.circle : Icons.circle_outlined),
+      label: Text(widget.textFilter!),
+      icon: Icon(widget.filter! ? Icons.circle : Icons.circle_outlined),
     );
   }
 }

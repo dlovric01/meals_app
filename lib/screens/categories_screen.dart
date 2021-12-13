@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/builders/category_list.dart';
-import 'package:meals_app/builders/dialog.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  final Function? saveFilters;
+  /* final Function? saveFilters;
   final Map<String, bool>? filters;
-
-  const CategoriesScreen(this.filters, this.saveFilters, {Key? key})
-      : super(key: key);
+ */
+  const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  bool _glutenFree = false;
+  /*  bool _glutenFree = false;
   bool _vegan = false;
   bool _vegetarian = false;
   bool _lactoseFree = false;
@@ -26,7 +24,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     _vegetarian = widget.filters!['vegetarian']!;
     _vegan = widget.filters!['vegan']!;
     super.initState();
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +54,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       floatingActionButton: TextButton(
         style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all(Theme.of(context).primaryColorDark),
+              MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
         ),
         child: const Text(
           'Filters',
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
-          setState(() {
+          /*  setState(() {
             showDialog(
                 context: context,
                 builder: (context) => DialogFilters(
                     _glutenFree, _vegan, _vegetarian, _lactoseFree));
-          });
+          }); */
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -102,7 +100,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   width: double.infinity,
                   child: const Center(
                     child: Text(
-                      'Europe',
+                      'Meals',
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
