@@ -46,6 +46,7 @@ class DialogFilters extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class FilterButton extends StatefulWidget {
   bool? filter;
   String? textFilter;
