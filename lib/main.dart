@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:meals_app/screens/categories_screen.dart';
-import 'package:meals_app/screens/category_meals.dart';
+import 'package:meals_app/screens/category_meals_screen.dart';
+import 'package:meals_app/screens/meal_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,8 +59,9 @@ class _MyAppState extends State<MyApp> {
       ),
       routes: {
         '/': (ctx) => const CategoriesScreen(/* _filters, _setFilters */),
-        CategoryMeals.routeName: (ctx) =>
-            const CategoryMeals(/* _filteredMeals */)
+        CategoryMealsScreen.routeName: (ctx) =>
+            const CategoryMealsScreen(/* _filteredMeals */),
+        MealDetailScreen.routeName: (ctx) => const MealDetailScreen()
       },
     );
   }

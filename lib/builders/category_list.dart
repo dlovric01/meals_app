@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
-import 'package:meals_app/screens/category_meals.dart';
+import 'package:meals_app/screens/category_meals_screen.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _CategoryListState extends State<CategoryList> {
                 borderRadius: BorderRadius.circular(10),
                 onTap: () {
                   Navigator.of(ctx).pushNamed(
-                    CategoryMeals.routeName,
+                    CategoryMealsScreen.routeName,
                     arguments: {
                       'id': DUMMY_CATEGORIES[index].id,
                       'title': DUMMY_CATEGORIES[index].title

@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/models/models.dart';
 
-class CategoryMeals extends StatefulWidget {
+import 'meal_details_screen.dart';
+
+class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
 
-  const CategoryMeals({Key? key}) : super(key: key);
+  const CategoryMealsScreen({Key? key}) : super(key: key);
   @override
-  State<CategoryMeals> createState() => _CategoryMealsState();
+  State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
 }
 
-class _CategoryMealsState extends State<CategoryMeals> {
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   String? categoryTitle;
   List<Meal>? meals;
 
@@ -27,7 +29,7 @@ class _CategoryMealsState extends State<CategoryMeals> {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     categoryTitle = routeArgs['title'];
     final mealId = routeArgs['id'];
-    meals = /* widget. */ availableMeals.where((meal) {
+    meals = availableMeals.where((meal) {
       return meal.categories.contains(mealId);
     }).toList();
     super.didChangeDependencies();
@@ -37,7 +39,7 @@ class _CategoryMealsState extends State<CategoryMeals> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryTitle.toString()),
+        title: Text('$categoryTitle'),
       ),
       body: ListView.builder(
         itemCount: meals!.length,
@@ -47,13 +49,21 @@ class _CategoryMealsState extends State<CategoryMeals> {
 
           return Card(
             child: ListTile(
-              onTap: () {},
-              leading: Image.network(meals![index].imageUrl, width: 70),
+              leading: Hero(
+                tag: 'mealImage',
+                child: Image.network(meals![index].imageUrl, width: 70),
+              ),
               title: Text('${meals![index].title}'),
               subtitle: Text('${meals![index].duration} Minutes  ' +
                   complexityText(complexity) +
                   '  ' +
                   affordabilityText(affordability)),
+              onTap: () {
+                Navigator.of(ctx).pushNamed(
+                  MealDetailScreen.routeName,
+                  arguments: meals![index].id,
+                );
+              },
             ),
           );
         },
