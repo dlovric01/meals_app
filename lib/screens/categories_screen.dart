@@ -15,24 +15,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text('Meals'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipOval(
-              child: Material(
-                color: Colors.transparent,
-                child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: InkWell(
-                    onTap: () {},
-                    child: const Icon(Icons.favorite),
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: LayoutBuilder(
