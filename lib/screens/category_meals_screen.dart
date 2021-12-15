@@ -8,6 +8,7 @@ class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
 
   const CategoryMealsScreen({Key? key}) : super(key: key);
+
   @override
   State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
 }
@@ -49,10 +50,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
           return Card(
             child: ListTile(
-              leading: Hero(
-                tag: 'mealImage',
-                child: Image.network(meals![index].imageUrl, width: 70),
-              ),
+              leading: Image.network(meals![index].imageUrl, width: 70),
               title: Text('${meals![index].title}'),
               subtitle: Text('${meals![index].duration} Minutes  ' +
                   complexityText(complexity) +

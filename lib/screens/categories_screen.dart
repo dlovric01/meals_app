@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/builders/category_list.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({
-    Key? key,
-  }) : super(key: key);
+  const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,17 +35,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: TextButton(
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
-        ),
-        child: const Text(
-          'Filters',
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: () {},
-      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           var screen = constraints.maxHeight;

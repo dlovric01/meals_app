@@ -17,7 +17,7 @@ class MealDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Hero(tag: 'mealImage', child: Image.network(selectedMeal.imageUrl)),
+            Image.network(selectedMeal.imageUrl),
             Container(
               decoration: BoxDecoration(
                   border: Border.all(width: 2),
